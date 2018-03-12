@@ -1,63 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>客户关系管理系统登录</title>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.min.js"></script>
-<STYLE type=text/css>
-BODY {
-	TEXT-ALIGN: center;
-	PADDING-BOTTOM: 0px;
-	BACKGROUND-COLOR: #ddeef2;
-	MARGIN: 0px;
-	PADDING-LEFT: 0px;
-	PADDING-RIGHT: 0px;
-	PADDING-TOP: 0px
-}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>国酒茅台CRM系统登录</title>
 
-A:link {
-	COLOR: #000000;
-	TEXT-DECORATION: none
-}
-
-A:visited {
-	COLOR: #000000;
-	TEXT-DECORATION: none
-}
-
-A:hover {
-	COLOR: #ff0000;
-	TEXT-DECORATION: underline
-}
-
-A:active {
-	TEXT-DECORATION: none
-}
-
-.input {
-	BORDER-BOTTOM: #ccc 1px solid;
-	BORDER-LEFT: #ccc 1px solid;
-	LINE-HEIGHT: 20px;
-	WIDTH: 182px;
-	HEIGHT: 20px;
-	BORDER-TOP: #ccc 1px solid;
-	BORDER-RIGHT: #ccc 1px solid
-}
-
-.input1 {
-	BORDER-BOTTOM: #ccc 1px solid;
-	BORDER-LEFT: #ccc 1px solid;
-	LINE-HEIGHT: 20px;
-	WIDTH: 120px;
-	HEIGHT: 20px;
-	BORDER-TOP: #ccc 1px solid;
-	BORDER-RIGHT: #ccc 1px solid;
-}
-</STYLE>
-<script type="text/javascript">
-	function login(){
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/form-elements.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-57-precomposed.png">
+        <script type="text/javascript">
+	/* function login(){
 		var userName=$("#userName").val();
 		var password=$("#password").val();
 		var roleName=$("#roleName").val();
@@ -76,83 +40,117 @@ A:active {
 		$("#adminlogin").submit();			
 		
 	}
+	if('${errorMsg}'!=''){
+		alert('${errorMsg}');
+	} */
+	
+	function login(){
+		var userName=$("#userName").val();
+		var password=$("#password").val();
+		var roleName=$("#roleName").val();
+		if(userName==null||userName==""){
+			alert("用户名不能为空！");
+			return;
+		}
+		if(password==null||password==""){
+			alert("密码不能为空！");
+			return;
+		}
+		if(roleName==null||roleName==""){
+			alert("请选择用户类型！");
+			return;
+		}
+             // ajax请求 
+            $.ajax({
+            	url:"${pageContext.request.contextPath}/user/login.do",
+            	type:"post",
+            	data:{
+            		"userName":userName,
+            		"password":password,
+            		"roleName":roleName
+            	},
+            	dataType:"text",
+            	success:function(data){
+            		if(data != null&&data == "success"){
+            			window.location.href="${pageContext.request.contextPath}/index/index.do";
+            		}else if(data != null&&data == "error"){
+            			alert("用户名或密码错误！");
+            		}else{
+            			alert("数据库连接失败！")
+            		}
+            	}
+            }); 
+	/* 	 $("#adminlogin").submit();  */ 
+	}
 </script>
 </head>
-<body>
-<FORM id=adminlogin  method=post
-	name=adminlogin action="${pageContext.request.contextPath}/user/login.do"  >
-<DIV></DIV>
-<TABLE style="MARGIN: auto; WIDTH: 100%; HEIGHT: 100%" border=0
-	cellSpacing=0 cellPadding=0>
-	<TBODY>
-		<TR>
-			<TD height=150>&nbsp;</TD>
-		</TR>
-		<TR style="HEIGHT: 254px">
-			<TD>
-			<DIV style="MARGIN: 0px auto; WIDTH: 936px"><IMG
-				style="DISPLAY: block" src="${pageContext.request.contextPath}/images/body_03.jpg"></DIV>
-			<DIV style="BACKGROUND-COLOR: #278296">
-			<DIV style="MARGIN: 0px auto; WIDTH: 936px">
-			<DIV
-				style="BACKGROUND: url(${pageContext.request.contextPath}/images/body_05.jpg) no-repeat; HEIGHT: 155px">
-			<DIV
-				style="TEXT-ALIGN: left; WIDTH: 265px; FLOAT: right; HEIGHT: 125px; _height: 95px">
-			<TABLE border=0 cellSpacing=0 cellPadding=0 width="100%">
-				<TBODY>
-					<TR>
-						<TD style="HEIGHT: 45px"><INPUT type="text" class=input value="${user.userName }" name="userName" id="userName"></TD>
-					</TR>
-					<TR>
-						<TD><INPUT type="password" class=input value="${user.password }" name="password" id="password"/></TD>
-					</TR>
-					<TR>
-						<td>
-							<select id="roleName" name="roleName" class="input" style="margin-top: 15px;height: 24px">
+ <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1>国酒茅台CRM管理系统</h1>
+                            <div class="description">
+                            	
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>登录系统</h3>
+                            		<p>请输入您的账号和密码</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-key"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+			                    <form role="form" action="${pageContext.request.contextPath}/user/login.do" method="post" class="login-form" id="adminlogin" name="adminlogin" >
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="form-username">账号</label>
+			                        	<input type="text" name="userName" placeholder="账号" class="form-username form-control" id="userName">
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="form-password">密码</label>
+			                        	<input type="password" name="password" placeholder="密码" class="form-password form-control" id="password">
+			                        </div> 
+			                        <div class="form-group">
+			                        	
+											<select id="roleName" name="roleName" class="form-username form-control" style="height: 50px">
 								<option value="">请选择用户类型...</option>
 								<option value="系统管理员"  ${'系统管理员'==user.roleName?'selected':'' }>系统管理员</option>
 								<option value="销售主管"  ${'销售主管'==user.roleName?'selected':'' }>销售主管</option>
 								<option value="客户经理"  ${'客户经理'==user.roleName?'selected':'' }>客户经理</option>
 								<option value="高管"  ${'高管'==user.roleName?'selected':'' }>高管</option>
 							</select>
-						</td>
-					</TR>
-				</TBODY>
-			</TABLE>
-			</DIV>
-			<DIV style="HEIGHT: 1px; CLEAR: both"></DIV>
-			<DIV style="WIDTH: 380px; FLOAT: right; CLEAR: both">
-			<TABLE border=0 cellSpacing=0 cellPadding=0 width=300>
-				<TBODY>
-					
-					<TR>
-						<TD width=100 align=right><INPUT
-							style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px"
-							id=btnLogin src="${pageContext.request.contextPath}/images/btn1.jpg" type=image name=btnLogin onclick="javascript:login();return false;"></TD>
-						<TD width=100 align=middle><INPUT
-							style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px"
-							id=btnReset src="${pageContext.request.contextPath}/images/btn2.jpg" type=image name=btnReset onclick="javascript:adminlogin.reset();return false;"></TD>
-					</TR>
-				</TBODY>
-			</TABLE>
-			</DIV>
-			</DIV>
-			</DIV>
-			</DIV>
-			<DIV style="MARGIN: 0px auto; WIDTH: 936px"><IMG
-				src="${pageContext.request.contextPath}/images/body_06.jpg"></DIV>
-			</TD>
-		</TR>
-		<TR style="HEIGHT: 30%">
-			<TD>&nbsp;</TD>
-		</TR>
-	</TBODY>
-</TABLE>
-</FORM>
-</body>
+								</div>
+			                        <button type="button" class="btn" onclick="login()">登录</button>
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    
+
+
+        <!-- Javascript -->
+        <script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/jquery.backstretch.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/scripts.js"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
 </html>
-<script type=text/javascript>
-	if('${errorMsg}'!=''){
-		alert('${errorMsg}');
-	}
-</script>

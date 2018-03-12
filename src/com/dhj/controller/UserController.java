@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dhj.entity.PageBean;
 import com.dhj.entity.User;
@@ -41,17 +42,16 @@ public class UserController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/login")
+	@ResponseBody  
+    @RequestMapping(value="/login") 
 	public String login(User user,HttpServletRequest request)throws Exception{
 		User resultUser=userService.login(user);
 		if(resultUser==null){
-			request.setAttribute("user", user);
-			request.setAttribute("errorMsg", "用户名或密码错误！");
-			return "login";
+			return "error";
 		}else{
-			HttpSession session=request.getSession();
-			session.setAttribute("currentUser", resultUser);
-			return "redirect:/main.jsp";
+			HttpSession session = request.getSession();
+			session.setAttribute("currentUser", user);
+			return "success";
 		}
 	}
 	
