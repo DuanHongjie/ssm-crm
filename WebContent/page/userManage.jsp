@@ -113,7 +113,7 @@
    		<th field="userName" width="50" align="center">用户名</th>
    		<th field="password" width="50" align="center">密码</th>
    		<th field="trueName" width="50" align="center">真实姓名</th>
-   		<th field="email" width="50" align="center">邮件</th>
+   		<th field="email" width="100" align="center">邮件</th>
    		<th field="phone" width="50" align="center">联系电话</th>
    		<th field="roleName" width="50" align="center">角色</th>
    	</tr>

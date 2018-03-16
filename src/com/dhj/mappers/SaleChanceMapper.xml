@@ -68,8 +68,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="add" parameterType="SaleChance">
 		insert into t_sale_chance values(null,#{chanceSource},#{customerName},#{cgjl},#{overView},#{linkMan},#{linkPhone},#{description},#{createMan},#{createTime},#{assignMan},#{assignTime},#{state},#{devResult})
 	</insert>
-	
-	<update id="update" parameterType="SaleChance">
+	<!--停止开发  -->
+		<update id="update1" parameterType="SaleChance">
 		update t_sale_chance
 		<set>
 			<if test="chanceSource!=null and chanceSource!='' ">
@@ -113,6 +113,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</set>
 		where id=#{id}
+	</update>
+	<!-- 开发成功 -->
+	<update id="update" parameterType="SaleChance">
+		update t_sale_chance
+		<set>
+			<if test="chanceSource!=null and chanceSource!='' ">
+				chanceSource = #{chanceSource},
+			</if>
+			<if test="customerName!=null and customerName!='' ">
+				customerName = #{customerName},
+			</if>
+			<if test="cgjl!=0">
+				cgjl = #{cgjl},
+			</if>
+			<if test="overView!=null and overView!='' ">
+				overView = #{overView},
+			</if>
+			<if test="linkMan!=null and linkMan!='' ">
+				linkMan = #{linkMan},
+			</if>
+			<if test="linkPhone!=null and linkPhone!='' ">
+				linkPhone = #{linkPhone},
+			</if>
+			<if test="description!=null and description!='' ">
+				description = #{description},
+			</if>
+			<if test="createMan!=null and createMan!='' ">
+				createMan = #{createMan},
+			</if>
+			<if test="createTime!=null">
+				createTime = #{createTime},
+			</if>
+			<if test="assignMan!=null and assignMan!='' ">
+				assignMan = #{assignMan},
+			</if>
+			<if test="assignTime!=null">
+				assignTime = #{assignTime},
+			</if>
+			<if test="state!=null">
+				state = #{state},
+			</if>
+			<if test="devResult!=null">
+				devResult = #{devResult},
+			</if>
+		</set>
+		where id=#{id};
+		
+		
+		<!--更新成功同时加入到客户信息-->
+		insert into t_customer(name,cusManager,phone,level) select customerName,assignMan,linkPhone,"普通客户" as c from t_sale_chance where id=#{id};
 	</update>
 	
 	<delete id="delete" parameterType="Integer">

@@ -52,4 +52,9 @@ public class SaleChanceServiceImpl implements SaleChanceService{
 		return saleChanceDao.findById(id);
 	}
 
+	@Override
+	public int update1(SaleChance saleChance) {
+		return saleChanceDao.update1(saleChance);
+	}
+
 }

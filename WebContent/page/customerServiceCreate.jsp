@@ -53,7 +53,7 @@
 </head>
 <body style="margin: 15px">
  
- <div id="p" class="easyui-panel" title="客服服务创建" style="width: 600px;height: 350px;padding: 10px">
+ <div id="p" class="easyui-panel" title="客服服务创建" style="width: 620px;height: 370px;padding: 10px">
    <form id="fm" method="post">
  	<table cellspacing="8px">
    		<tr>
@@ -61,20 +61,21 @@
    			<td>
    				<input class="easyui-combobox" id="serveType" name="serveType" data-options="panelHeight:'auto',editable:false,valueField:'dataDicValue',textField:'dataDicValue',url:'${pageContext.request.contextPath}/dataDic/dataDicComboList.do?dataDicName=服务类型'"/>&nbsp;<font color="red">*</font>
    			</td>
-   			<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+     	</tr>
+   		<tr>
    			<td>客户</td>
    			<td><input type="text" id="customer" name="customer" class="easyui-validatebox" required="true"/>&nbsp;<font color="red">*</font></td>
    		</tr>
    		<tr>
    			<td>概要：</td>
    			<td colspan="4">
-   				<input type="text" id="overview" name="overview" style="width: 419px" class="easyui-validatebox" required="true"/>&nbsp;<font color="red">*</font>
+   				<input type="text" id="overview" name="overview" style="width: 300px" class="easyui-validatebox" required="true"/>&nbsp;<font color="red">*</font>
    			</td>
    		</tr>
    		<tr>
    			<td>服务请求：</td>
    			<td colspan="4">
-   				<textarea id="servicerequest" name="servicerequest" rows="5" cols="49" class="easyui-validatebox" required="true"></textarea>&nbsp;<font color="red">*</font>
+   				<textarea id="servicerequest" name="servicerequest" rows="5" cols="49" style="width: 300px" class="easyui-validatebox" required="true"></textarea>&nbsp;<font color="red">*</font>
    			</td>
    		</tr>
    		<tr>
@@ -84,12 +85,14 @@
    				<input type="text" readonly="readonly" id="createPeople" name="createPeople" value="${currentUser.trueName }"/>
    			</td>
    			<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+   		</tr>
+   		<tr>
    			<td>创建时间：</td>
    			<td><input type="text" id="createTime" name="createTime" readonly="readonly"/></td>
    		</tr>
    		<tr>
-   			<td colspan="4"></td>
-   			<td>
+   			<td colspan="1"></td>
+   			<td	>
    				<a href="javascript:saveCustomerService()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>&nbsp;&nbsp;
    				<a href="javascript:resetValue()" class="easyui-linkbutton" iconCls="icon-reset">重置</a>
    			</td>

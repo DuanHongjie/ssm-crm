@@ -53,4 +53,6 @@ public interface SaleChanceService {
 	 * @return
 	 */
 	public SaleChance findById(Integer id);
+
+	public int update1(SaleChance saleChance);
 }

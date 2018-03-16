@@ -129,7 +129,11 @@ public class CusDevPlanController {
 		SaleChance saleChance=new SaleChance();
 		saleChance.setId(Integer.parseInt(id));
 		saleChance.setDevResult(Integer.parseInt(devResult));
-		int resultTotal=saleChanceService.update(saleChance);
+		int resultTotal;
+		if(Integer.parseInt(devResult)==2) {
+		resultTotal=saleChanceService.update(saleChance);}
+		else {
+			resultTotal=saleChanceService.update1(saleChance);}
 		JSONObject result=new JSONObject();
 		if(resultTotal>0){
 			result.put("success", true);

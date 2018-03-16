@@ -89,22 +89,23 @@
 </script>
 </head>
 <body class="easyui-layout">
-<div region="north" style="height: 78px;background-color: #E0ECFF">
+<div region="north" style="height: 78px;background-color:white">
 	<table style="padding: 5px" width="100%">
 		<tr>
 			<td width="50%">
-				<img alt="logo" src="${pageContext.request.contextPath}/images/bglogo.png">
+				<img alt="logo" src="${pageContext.request.contextPath}/images/logo.jpg">
 			</td>
-			<td valign="bottom" align="right" width="50%">
-				<font size="3">&nbsp;&nbsp;<strong>欢迎：</strong>${currentUser.userName }</font>【${currentUser.roleName }】
-			</td>
+			 <td valign="bottom"
+                style="font-size: 20px;color:#8B8B8B;font-family: '楷体';"
+                align="right" width="50%"><font size="3">&nbsp;&nbsp;<strong>当前管理员：</strong></font>${currentUser.trueName}【${currentUser.roleName}】
+            </td>
 		</tr>
 	</table>
 </div>
 <div region="center">
 	<div class="easyui-tabs" fit="true" border="false" id="tabs">
 		<div title="首页" data-options="iconCls:'icon-home'">
-			<div align="center" style="padding-top: 100px"><font color="red" size="10">欢迎使用</font></div>
+			<div align="center" style="padding-top: 100px"><font color="#8B8B8B" size="10">欢迎使用国酒茅台CRM系统</font></div>
 		</div>
 	</div>
 </div>
@@ -114,7 +115,7 @@
 			<a href="javascript:openTab('营销机会管理','saleChanceManage.jsp','icon-yxjhgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yxjhgl'" style="width: 150px">营销机会管理</a>
 			<a href="javascript:openTab('客户开发计划','cusdevplanManage.jsp','icon-khkfjh')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khkfjh'" style="width: 150px">客户开发计划</a>
 		</div>
-		<div title="客户管理"  data-options="iconCls:'icon-khgl'" style="padding:10px;">
+		<div title="客户管理"  data-options="iconCls:'icon-khgl'" style="padding:10px">
 			<a href="javascript:openTab('客户信息管理','customerManage.jsp','icon-khxxgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khxxgl'" style="width: 150px;">客户信息管理</a>
 			<a href="javascript:openTab('客户流失管理','customerLossManage.jsp','icon-khlsgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khlsgl'" style="width: 150px;">客户流失管理</a>
 		</div>

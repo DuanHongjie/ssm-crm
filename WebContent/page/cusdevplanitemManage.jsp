@@ -42,7 +42,14 @@
  function updateSaleChanceDevResult(devResult){
 	 $.post("${pageContext.request.contextPath}/cusDevPlan/updateSaleChanceDevResult.do",{id:'${param.saleChanceId}',devResult:devResult},function(result){
 		 if(result.success){
-			 $.messager.alert("系统提示","执行成功！");
+			if(devResult==2){
+				 $.messager.alert("系统提示","开发成功，请完善客户资料！");
+				}
+			else if(devResult==3){
+				$.messager.alert("系统提示","开发失败");
+			}else{
+				$.messager.alert("系统提示","执行失败！");
+			}
 		 }else{
 			 $.messager.alert("系统提示","执行失败！");
 		 }
