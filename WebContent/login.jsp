@@ -20,30 +20,7 @@
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/assets/ico/apple-touch-icon-57-precomposed.png">
-        <script type="text/javascript">
-	/* function login(){
-		var userName=$("#userName").val();
-		var password=$("#password").val();
-		var roleName=$("#roleName").val();
-		if(userName==null||userName==""){
-			alert("用户名不能为空！");
-			return;
-		}
-		if(password==null||password==""){
-			alert("密码不能为空！");
-			return;
-		}
-		if(roleName==null||roleName==""){
-			alert("请选择用户类型！");
-			return;
-		}
-		$("#adminlogin").submit();			
-		
-	}
-	if('${errorMsg}'!=''){
-		alert('${errorMsg}');
-	} */
-	
+        <script type="text/javascript">	
 	function login(){
 		var userName=$("#userName").val();
 		var password=$("#password").val();
