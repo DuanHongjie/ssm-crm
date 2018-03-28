@@ -47,15 +47,14 @@
  }
  
 </script>
-<title>Insert title here</title>
+<title>国酒茅台客户管理系统</title>
 </head>
 <body style="margin: 15px">
  
  <div id="p" class="easyui-panel" title="客户流失基本信息" style="width: 800px;height: 130px;padding: 10px">
  	<table cellspacing="8px">
    		<tr>
-   			<td>客户编号：</td>
-   			<td><input type="text" id="cusNo" name="cusNo" readonly="readonly"/></td>
+   			
    			<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
    			<td>客户名称</td>
    			<td><input type="text" id="cusName" name="cusName" readonly="readonly"/></td>

@@ -40,8 +40,7 @@
  <div id="p" class="easyui-panel" title="客户基本信息" style="width: 700px;height: 100px;padding: 10px">
  	<table cellspacing="8px">
    		<tr>
-   			<td>客户编号：</td>
-   			<td><input type="text" id="khno" name="khno" readonly="readonly"/></td>
+   			
    			<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
    			<td>客户名称</td>
    			<td><input type="text" id="name" name="name" readonly="readonly"/></td>

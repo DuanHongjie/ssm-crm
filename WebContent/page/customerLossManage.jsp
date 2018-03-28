@@ -54,7 +54,6 @@
    		<th field="cusNo" width="50" align="center" hidden="true">客户编号</th>
    		<th field="cusName" width="100" align="center">客户名称</th>
    		<th field="cusManager" width="100" align="center">客户经理</th>
-   	<!-- 	<th field="lastOrderTime" width="100" align="center">上次下单日期</th> -->
    		<th field="confirmLossTime" width="100" align="center">确认流失日期</th>
    		<th field="state" width="80" align="center" formatter="formatState">客户状态</th>
    		<th field="lossReason" width="200" align="center">流失原因</th>
