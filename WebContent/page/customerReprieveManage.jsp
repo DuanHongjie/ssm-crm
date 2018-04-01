@@ -33,17 +33,39 @@
  });
  
  function confirmLoss(){
-	 $.messager.prompt('系统提示', '请输入流失原因：', function(r){
-			if (r){
-				$.post("${pageContext.request.contextPath}/customerLoss/confirmLoss.do",{id:'${param.lossId}',lossReason:r},function(result){
-					if(result.success){
-						 $.messager.alert("系统提示","执行成功！");
-					}else{
-						$.messager.alert("系统提示","执行失败！");
-					}
-				},"json");
+// 	 $.messager.prompt('系统提示', '请输入流失原因：', function(r){
+// 			if (r){
+// 				$.post("${pageContext.request.contextPath}/customerLoss/confirmLoss.do",{id:'${param.lossId}',lossReason:r},function(result){
+// 					if(result.success){
+// 						 $.messager.alert("系统提示","执行成功！");
+// 					}else{
+// 						$.messager.alert("系统提示","执行失败！");
+// 					}
+// 				},"json");
+// 			}
+// 		});
+	 $("#fm").form("submit",{
+			url:${pageContext.request.contextPath}/customerLoss/confirmLoss.do,
+			onSubmit:function(){
+				if($("#myd").combobox("getValue")==""){
+					$.messager.alert("系统提示","请选择！");
+					return false;
+				}
+				return $(this).form("validate");
+			},
+			success:function(result){
+				var result=eval('('+result+')');
+				if(result.success){
+					$.messager.alert("系统提示","执行成功！");
+					resetValue();
+					$("#dlg").dialog("close");
+					$("#dg").datagrid("reload");
+				}else{
+					$.messager.alert("系统提示","执行失败！");
+					return;
+				}
 			}
-		});
+		 });
  }
  
 </script>
@@ -54,7 +76,8 @@
  <div id="p" class="easyui-panel" title="客户流失基本信息" style="width: 800px;height: 130px;padding: 10px">
  	<table cellspacing="8px">
    		<tr>
-   			
+   			<td>客户编号：</td>
+   			<td><input type="text" id="cusNo" name="cusNo" readonly="readonly"/></td>
    			<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
    			<td>客户名称</td>
    			<td><input type="text" id="cusName" name="cusName" readonly="readonly"/></td>
@@ -87,5 +110,38 @@
  	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">撤销行</a>
  	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-confirm" plain="true" onclick="javascript:confirmLoss()">确认流失</a>
  </div>
+  
+ 
+ 
+  <div id="dlg" class="easyui-dialog" style="width:750px;height:450px;padding: 10px 20px"
+   closed="true" buttons="#dlg-buttons">
+   
+   <form id="fm" method="post">
+   	<table cellspacing="8px">
+   		<table cellspacing="8px">	
+   			<td>客户满意度：</td>
+   			<td>
+   				<select class="easyui-combobox" style="width: 154px" id="myd" name="myd" editable="false" panelHeight="auto" >
+					<option value="">请选择...</option>	
+					<option value="☆">☆</option>	
+					<option value="☆☆">☆☆</option>	
+					<option value="☆☆☆">☆☆☆</option>	
+					<option value="☆☆☆☆">☆☆☆☆</option>		
+					<option value="☆☆☆☆☆">☆☆☆☆☆</option>				
+                </select>&nbsp;<font color="red">*</font>
+   			</td>	
+   	</table>
+   </form>
+ </div>
+ 
+ <div id="dlg-buttons">
+ 	<a href="javascript:saveCustomerServiceFeedback()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+ 	<a href="javascript:closeCustomerFeedbackDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+ </div>
+ 
+ 
+ 
+ 
+ 
 </body>
 </html>

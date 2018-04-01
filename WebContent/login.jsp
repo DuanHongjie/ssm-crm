@@ -100,10 +100,10 @@
 			                        	
 											<select id="roleName" name="roleName" class="form-username form-control" style="height: 50px">
 								<option value="">请选择用户类型...</option>
-								<option value="系统管理员"  ${'系统管理员'==user.roleName?'selected':'' }>系统管理员</option>
-								<option value="销售主管"  ${'销售主管'==user.roleName?'selected':'' }>销售人员</option>
-								<option value="客户经理"  ${'客户经理'==user.roleName?'selected':'' }>客户经理</option>
-								<option value="高管"  ${'高管'==user.roleName?'selected':'' }>高管</option>
+								<option value="管理员"  ${'管理员'==user.roleName?'selected':'' }>管理员</option>
+								<option value="销售主管"  ${'销售主管'==user.roleName?'selected':'' }>销售主管</option>
+								<option value="客户主管"  ${'客户主管'==user.roleName?'selected':'' }>客户主管</option>
+							
 							</select>
 								</div>
 			                        <button type="button" class="btn" onclick="login()">登录</button>

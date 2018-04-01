@@ -70,7 +70,6 @@ public class CustomerServiceImpl implements CustomerService{
 		List<Customer> customerList=customerDao.findLossCustomer(); // 查找流失客户
 		for(Customer c:customerList){
 			CustomerLoss customerLoss=new CustomerLoss(); // 实例化客户流失实体
-			customerLoss.setCusNo(c.getKhno()); // 客户编号
 			customerLoss.setCusName(c.getName()); // 客户名称
 			customerLoss.setCusManager(c.getCusManager()); // 客户经理
 			Order order=orderDao.findLastOrderByCusId(c.getId()); // 查找指定客户最近的订单

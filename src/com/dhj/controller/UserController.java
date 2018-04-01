@@ -49,7 +49,7 @@ public class UserController {
 		User resultUser=userService.login(user);
 		if(resultUser==null){
 			return "error";
-		}else{
+		}else {
 			HttpSession session = request.getSession();
 			session.setAttribute("currentUser", resultUser);
 			return "success";
@@ -91,7 +91,7 @@ public class UserController {
 	@RequestMapping("/customerManagerComboList")
 	public String customerManagerComboList(HttpServletResponse response)throws Exception{
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("roleName", "客户经理");
+		map.put("roleName", "客户主管");
 		List<User> userList=userService.find(map);
 		JSONArray row=JSONArray.fromObject(userList);
 		ResponseUtil.write(response, row);

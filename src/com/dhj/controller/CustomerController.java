@@ -50,7 +50,6 @@ public class CustomerController {
 	public String list(@RequestParam(value="page",required=false)String page,@RequestParam(value="rows",required=false)String rows,Customer s_customer,HttpServletResponse response)throws Exception{
 		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("khno", StringUtil.formatLike(s_customer.getKhno()));
 		map.put("name", StringUtil.formatLike(s_customer.getName()));
 		map.put("start", pageBean.getStart());
 		map.put("size", pageBean.getPageSize());
@@ -75,7 +74,6 @@ public class CustomerController {
 	public String save(Customer customer,HttpServletResponse response)throws Exception{
 		int resultTotal=0; // 操作的记录条数
 		if(customer.getId()==null){
-			customer.setKhno("KH"+DateUtil.getCurrentDateStr()); // 动态生成客户编号
 			resultTotal=customerService.add(customer);
 		}else{
 			resultTotal=customerService.update(customer);
