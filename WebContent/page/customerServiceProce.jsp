@@ -67,7 +67,7 @@
 <body style="margin: 1px">
  <table id="dg" title="客服服务处理管理" class="easyui-datagrid"
    fitColumns="true" pagination="true" rownumbers="true"
-   url="${pageContext.request.contextPath}/customerService/list.do?state=新创建" fit="true" toolbar="#tb">
+   url="${pageContext.request.contextPath}/customerService/list.do?state=已分配" fit="true" toolbar="#tb">
    <thead>
    	<tr>
    		<th field="cb" checkbox="true" align="center"></th>

@@ -156,8 +156,17 @@
 	 }
 	 window.parent.openTab('客户历史订单查询','orderManage.jsp?cusId='+selectedRows[0].id,'icon-lsdd');
  }
+ /*导出Excel  */
+		function doExportExcel(){
+			$.messager.confirm('确认','确认导出该表格',function(r){
+				if (r) {
+					window.location.href="${pageContext.request.contextPath}/customer/exportExcel.do";
+				}
+			});					
+		}
+     
 </script>
-<title>Insert title here</title>
+<title>客户信息管理</title>
 </head>
 <body style="margin: 1px">
  <table id="dg" title="客户信息查询" class="easyui-datagrid"
@@ -202,6 +211,7 @@
  		<a href="javascript:openCustomerLinkMan()" class="easyui-linkbutton" iconCls="icon-lxr" plain="true">联系人管理</a>
  		<a href="javascript:openCustomerContact()" class="easyui-linkbutton" iconCls="icon-jwjl" plain="true">交往记录管理</a>
  		<a href="javascript:openCustomerOrder()" class="easyui-linkbutton" iconCls="icon-jwjl" plain="true">历史订单查看</a>
+ 		<a href="javascript:doExportExcel()" class="easyui-linkbutton"  iconCls="icon-add" plain="true">导出表格</a>
  	</div>
  	<div>
  		&nbsp;客户编号：&nbsp;<input type="text" id="s_khno" size="20" onkeydown="if(event.keyCode==13) searchCustomer()"/>

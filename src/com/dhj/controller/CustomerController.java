@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
@@ -176,5 +177,29 @@ public class CustomerController {
 		JSONArray jsonArray=JSONArray.fromObject(customerFwList);
 		ResponseUtil.write(response, jsonArray);
 		return null;
+	}
+	/**
+	 * 导出excel表格
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	
+	@RequestMapping("/exportExcel")
+	public void exportExcel(HttpServletResponse response) {
+		try {
+			/*//1、查找用户列表
+			List<SaleChance> list = saleChanceService.findAll();
+			//2、导出
+*/			response.setContentType("application/x-execl");
+			response.setHeader("Content-Disposition", "attachment;filename=" + new String("用户列表.xls".getBytes(), "ISO-8859-1"));
+			ServletOutputStream outputStream = response.getOutputStream();
+			customerService.exportExcel(outputStream);
+			if(outputStream != null){
+				outputStream.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

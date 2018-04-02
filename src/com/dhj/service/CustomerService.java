@@ -3,6 +3,8 @@ package com.dhj.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
+
 import com.dhj.entity.Customer;
 import com.dhj.entity.CustomerFw;
 import com.dhj.entity.CustomerGc;
@@ -87,4 +89,9 @@ public interface CustomerService {
 	 * @return
 	 */
 	public List<CustomerFw> findCustomerFw();
+	/**
+	 * µ¼³öexcel
+	 * @return
+	 */
+	public void exportExcel(ServletOutputStream outputStream);
 }
