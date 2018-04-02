@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.dhj.entity.CustomerFw;
 import com.dhj.entity.CustomerLoss;
+import com.dhj.entity.CustomerLossFX;
 import com.dhj.entity.PageBean;
 import com.dhj.service.CustomerLossService;
 import com.dhj.util.ResponseUtil;
@@ -64,7 +66,19 @@ public class CustomerLossController {
 		ResponseUtil.write(response, result);
 		return null;
 	}
-	
+	/**
+	 * 查询客户服务分析
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/findCustomerLoss")
+	public String findCustomerFw(HttpServletResponse response)throws Exception{
+		List<CustomerLossFX> customerLossList=customerLossService.findCustomerLoss();
+		JSONArray jsonArray=JSONArray.fromObject(customerLossList);
+		ResponseUtil.write(response, jsonArray);
+		return null;
+	}
 	/**
 	 * 通过ID查找实体
 	 * @param id

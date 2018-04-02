@@ -214,7 +214,7 @@
  		<a href="javascript:doExportExcel()" class="easyui-linkbutton"  iconCls="icon-add" plain="true">导出表格</a>
  	</div>
  	<div>
- 		&nbsp;客户编号：&nbsp;<input type="text" id="s_khno" size="20" onkeydown="if(event.keyCode==13) searchCustomer()"/>
+ 		
  		&nbsp;客户名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchCustomer()"/>
  		<a href="javascript:searchCustomer()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
  	</div>

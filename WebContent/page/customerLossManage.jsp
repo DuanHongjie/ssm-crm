@@ -51,7 +51,7 @@
    	<tr>
    		<th field="cb" checkbox="true" align="center"></th>
    		<th field="id" width="50" align="center">编号</th>
-   		<th field="cusNo" width="50" align="center" hidden="true">客户编号</th>
+  <!--  		<th field="cusNo" width="50" align="center" hidden="true">客户编号</th> -->
    		<th field="cusName" width="100" align="center">客户名称</th>
    		<th field="cusManager" width="100" align="center">客户经理</th>
    		<th field="confirmLossTime" width="100" align="center">确认流失日期</th>

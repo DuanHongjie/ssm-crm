@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.dhj.dao.CustomerLossDao;
 import com.dhj.entity.CustomerLoss;
+import com.dhj.entity.CustomerLossFX;
 import com.dhj.service.CustomerLossService;
 
 /**
@@ -40,6 +41,11 @@ public class CustomerLossServiceImpl implements CustomerLossService{
 	@Override
 	public int update(CustomerLoss customerLoss) {
 		return customerLossDao.update(customerLoss);
+	}
+
+	@Override
+	public List<CustomerLossFX> findCustomerLoss() {
+		return customerLossDao.find2();
 	}
 
 }

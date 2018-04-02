@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.dhj.entity.CustomerLoss;
+import com.dhj.entity.CustomerLossFX;
 
 /**
  * 客户流失Dao接口
@@ -48,4 +49,7 @@ public interface CustomerLossDao {
 	 * @return
 	 */
 	public int update(CustomerLoss customerLoss);
+
+
+	public List<CustomerLossFX> find2();
 }

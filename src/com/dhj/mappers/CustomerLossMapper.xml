@@ -14,7 +14,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="state" column="state"/>
 		<result property="lossReason" column="lossReason"/>
 	</resultMap>
-	
+	<resultMap type="CustomerLossFx" id="CustomerLossFXResult">
+			<result property="lossreason" column="lossreason"/>
+			<result property="num" column="num"/>
+	</resultMap>
 	<select id="find" parameterType="Map" resultMap="CustomerLossResult">
 		select * from t_customer_loss
 		<where>
@@ -30,9 +33,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 		<if test="start!=null and size!=null">
 			limit #{start},#{size}
-		</if>
+		</if>	
 	</select>
-
+	
+	<select id="find2" resultMap="CustomerLossFXResult">
+		SELECT lossreason , COUNT(lossreason) AS num FROM t_customer_loss GROUP BY lossreason;
+	</select>
 	
 	<select id="getTotal" parameterType="Map" resultType="Long">
 		select count(*) from t_customer_loss

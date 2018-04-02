@@ -4,52 +4,68 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/icon.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
+<script src="${pageContext.request.contextPath}/highcharts4/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/highcharts4/js/highcharts.js" type="text/javascript"></script> 
 <script type="text/javascript">
 
-
-function searchCustomerLoss(){
-	 $("#dg").datagrid('load',{
-		"cusName":$("#s_cusName").val(),
-		"cusManager":$("#s_cusManager").val()
-	 });
-}
+$(function () {
+	
+	var chart=new Highcharts.Chart({
+		chart: {
+			renderTo:'container',
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            events:{
+            	load:function(event){
+            		var series=this.series[0];
+            		// ajax请求后台加载数据
+            		$.post("${pageContext.request.contextPath}/customerLoss/findCustomerLoss.do",{},function(result){
+            			var xArr=new Array();
+            			for(var i=0;i<result.length;i++){
+            				xArr[i]=new Array();
+            				xArr[i][0]=result[i].lossreason;
+            				xArr[i][1]=result[i].num;
+            			}
+            			series.setData(xArr);
+            		},"json");
+            	}
+            }
+        },
+        title: {
+            text: '客户流失分析'
+        },
+        tooltip: {
+        	formatter:function(){
+        		return '<b>'+this.point.name+'</b>:'+Highcharts.numberFormat(this.percentage,1)+'% ('+this.y+'个)'	
+        	}
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '比例',
+            data: [
+               
+            ]
+        }]
+	});
+});
  
 </script>
 <title>Insert title here</title>
 </head>
 <body style="margin: 1px">
- <table id="dg" title="客户流失分析" class="easyui-datagrid"
-   fitColumns="true" pagination="true" rownumbers="true"
-   url="${pageContext.request.contextPath}/customerLoss/list.do?state=1" fit="true" toolbar="#tb">
-   <thead>
-   	<tr>
-   		<th field="cb" checkbox="true" align="center"></th>
-   		<th field="id" width="50" align="center">编号</th>
-   		<th field="cusNo" width="50" align="center" hidden="true">客户编号</th>
-   		<th field="cusName" width="100" align="center">客户名称</th>
-   		<th field="cusManager" width="100" align="center">客户经理</th>
-   		<!-- <th field="lastOrderTime" width="100" align="center">上次下单日期</th> -->
-   		<th field="confirmLossTime" width="100" align="center">确认流失日期</th>
-   		<th field="state" width="80" align="center" hidden="true">客户状态</th>
-   		<th field="lossReason" width="200" align="center">流失原因</th>
-   	</tr>
-   </thead>
- </table>
- <div id="tb">
- 	<div>
- 		
- 	</div>
- 	<div>
- 		&nbsp;客户名称：&nbsp;<input type="text" id="s_cusName" size="20" onkeydown="if(event.keyCode==13) searchCustomerLoss()"/>
- 		&nbsp;客户经理：&nbsp;<input type="text" id="s_cusManager" size="20" onkeydown="if(event.keyCode==13) searchCustomerLoss()"/>
- 		<a href="javascript:searchCustomerLoss()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
- 	</div>
- </div>
- 
+ <div id="container" style="min-width: 800px;height: 400px"></div>
 </body>
 </html>
